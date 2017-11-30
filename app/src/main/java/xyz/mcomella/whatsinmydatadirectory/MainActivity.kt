@@ -30,6 +30,11 @@ private fun logDirectory(dir: File) {
     if (!dir.exists() || !dir.isDirectory) throw IllegalStateException("Expected ${dir.absolutePath} to be a directory.")
 
     log("--- ${dir.absolutePath} ---")
-    dir.list().forEach { log("  $it") }
-    log("") // newline.
+
+    val children = dir.list()
+    if (children.isEmpty()) {
+        log("EMPTY")
+    } else children.forEach {
+        log("  $it")
+    }
 }
