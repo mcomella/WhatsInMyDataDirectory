@@ -1,5 +1,6 @@
 package xyz.mcomella.whatsinmydatadirectory
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            logDirectory(dataDir)
+        } else {
+            log("Unable to log dataDir - requires API 24+")
+        }
         logDirectory(filesDir)
         logDirectory(cacheDir)
     }
